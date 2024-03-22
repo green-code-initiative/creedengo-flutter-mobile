@@ -57,7 +57,3 @@ After initialization, visit [http://localhost:9000](http://localhost:9000) to ac
 ## License
 
 This project is licensed under the GPL v3 License - see the [LICENSE](LICENSE) file for details.
-
----
-
-This README serves as a template to kickstart your eco-friendly Flutter project with `ecoCode Flutter for Dart`, ensuring that your application not only delivers exceptional performance and user experience but also contributes positively to the environment.
