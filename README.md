@@ -1,42 +1,63 @@
-![Logo](docs/resources/5ekko.png)
-======================================
+# ecoCode Flutter for Dart
 
-Mobile apps running on top of battery-limited, android-powered devices are more than others concerned by the reduction 
-of their environmental footprint. Hence, we created `ecoCode android for Kotlin`, the version of ecoCode project fully 
-dedicated to the Android Kotlin projects. 
+![ecoCode Logo](docs/resources/5ekko.png)
 
-It provides static code analyzers to highlight code structures that may have a negative ecological impact: energy over-consumption, 
-"fatware", shortening devices' lifespan, etc.
+Mobile applications, especially those running on battery-powered devices, face a unique challenge in managing their environmental impact. The `ecoCode Flutter for Dart` project is our solution for Flutter developers who are conscious of their applications' energy consumption and ecological footprint. Drawing inspiration from [best practices for Android](https://github.com/cnumr/best-practices-mobile#-android-platform), this project aims to extend these principles to the Flutter ecosystem, focusing on Dart programming language.
 
-ecoCode android for Kotlin is based on an evolving catalog of [best practices for Android](https://github.com/cnumr/best-practices-mobile#-android-platform). 
-A SonarQube plugin then implements this catalog as rules for scanning your native Android projects. 
+## Features
 
-To work on Android projects developed in Java, you can use the [ecoCode Android plugin for Java projects](https://github.com/green-code-initiative/ecoCode-android).
+`ecoCode Flutter for Dart` provides a suite of static code analyzers designed to identify and highlight code patterns that could lead to excessive energy consumption, "fatware", or potentially shorten the lifespan of devices. By integrating this tool into your Flutter project, you can ensure your app is as efficient and eco-friendly as possible.
 
-This project is based on [SonarSource - sonar-kotlin project](https://github.com/SonarSource/sonar-kotlin), fork of the version of the 2023/07/03.
+## Best Practices Catalog
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+The project is built around a comprehensive catalog of eco-friendly best practices tailored for Flutter development, including but not limited to:
 
-🚀 Quickstart
--------------
+- **Optimized API Usage**: Encouraging the use of efficient APIs for tasks like location tracking, networking, and sensor management.
+- **Resource Management**: Highlighting the importance of proper allocation and deallocation of resources to prevent leaks that could drain device batteries.
+- **Eco-Friendly UI/UX Design**: Promoting UI and UX design choices that reduce energy consumption, such as dark mode and simplified animations.
+- **Network Efficiency**: Offering guidelines for making network communications more efficient and reducing the carbon footprint associated with data transfer.
+- **Battery Usage Optimization**: Providing strategies to minimize battery usage without compromising user experience.
 
-To build the project and run the test simply launch:
+## Quickstart
 
-```bash
-./gradlew build
-```
+### Building the Project
 
-Then, a docker file is configured to launch a SonarQube instance with the plugin installed:
+To integrate `ecoCode Flutter for Dart` into your project, start by including it as a dependency in your `pubspec.yaml` file. Then, run the following command to download the package:
 
 ```bash
-docker compose up --build -d
+flutter pub get
 ```
 
-Wait a little bit during first start initialization, and go to [http://localhost:9000](http://localhost:9000). Default credentials are `admin`/`admin`
+### Running the Analyzer
 
-🧩 Plugins version compatibility
-------------------
+To analyze your Flutter project with `ecoCode`, run:
 
-| Plugins Version | SonarQube version           |
-|-----------------|-----------------------------|
-| 0.0.+           | SonarQube 9.9.+ LTS to 10.3 |
+```bash
+flutter analyze
+```
+
+Make sure to configure the `analysis_options.yaml` to include `ecoCode`'s specific rules for a comprehensive analysis.
+
+### Docker Integration
+
+A Dockerfile is included for setting up a SonarQube instance with `ecoCode Flutter for Dart` pre-installed. Use the following command to build and run the Docker container:
+
+```bash
+docker-compose up --build -d
+```
+
+After initialization, visit [http://localhost:9000](http://localhost:9000) to access the SonarQube dashboard. The default login credentials are `admin`/`admin`.
+
+## Plugin Version Compatibility
+
+| ecoCode Version | SonarQube Version        |
+|-----------------|--------------------------|
+|        | 9.9 LTS to 10.3          |
+
+## License
+
+This project is licensed under the GPL v3 License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+This README serves as a template to kickstart your eco-friendly Flutter project with `ecoCode Flutter for Dart`, ensuring that your application not only delivers exceptional performance and user experience but also contributes positively to the environment.
