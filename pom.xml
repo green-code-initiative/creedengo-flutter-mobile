@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.creedengo</groupId>
+    <artifactId>creedengo-flutter</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>sonar-plugin</packaging>
+
+    <name>Creedengo Flutter Plugin</name>
+    <description>SonarQube plugin for the eco-design of Flutter/Dart applications.</description>
+    <url>https://github.com/creedengo/creedengo-flutter</url>
+    <inceptionYear>2025</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License v3.0</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/creedengo/creedengo-flutter.git</connection>
+        <developerConnection>scm:git:git@github.com:creedengo/creedengo-flutter.git</developerConnection>
+        <url>https://github.com/creedengo/creedengo-flutter</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/creedengo/creedengo-flutter/issues</url>
+    </issueManagement>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- SonarQube versions -->
+        <sonar.version>9.4.0.54424</sonar.version>
+        <sonar-packaging.version>1.21.0.505</sonar-packaging.version>
+
+        <!-- Test dependencies -->
+        <junit.version>5.10.2</junit.version>
+        <mockito.version>5.11.0</mockito.version>
+        <assertj.version>3.25.3</assertj.version>
+
+        <!-- Build plugins -->
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+        <jacoco-plugin.version>0.8.12</jacoco-plugin.version>
+    </properties>
+
+    <dependencies>
+        <!-- SonarQube Plugin API -->
+        <dependency>
+            <groupId>org.sonarsource.sonarqube</groupId>
+            <artifactId>sonar-plugin-api</artifactId>
+            <version>${sonar.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Test fixtures -->
+        <dependency>
+            <groupId>org.sonarsource.sonarqube</groupId>
+            <artifactId>sonar-plugin-api-impl</artifactId>
+            <version>${sonar.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
+                <artifactId>sonar-packaging-maven-plugin</artifactId>
+                <version>${sonar-packaging.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <pluginKey>creedengoflutter</pluginKey>
+                    <pluginClass>io.creedengo.flutter.CreedengoDartPlugin</pluginClass>
+                    <pluginName>Creedengo Flutter</pluginName>
+                    <pluginDescription>${project.description}</pluginDescription>
+                    <pluginUrl>${project.url}</pluginUrl>
+                    <pluginIssueTrackerUrl>${project.url}/issues</pluginIssueTrackerUrl>
+                    <pluginSourcesUrl>${project.url}</pluginSourcesUrl>
+                    <pluginOrganizationName>Creedengo</pluginOrganizationName>
+                    <pluginOrganizationUrl>https://github.com/creedengo</pluginOrganizationUrl>
+                    <pluginLicense>GPL-3.0</pluginLicense>
+                    <sonarLintSupported>false</sonarLintSupported>
+                    <skipDependenciesPackaging>true</skipDependenciesPackaging>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
