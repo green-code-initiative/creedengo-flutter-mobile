@@ -1,0 +1,27 @@
+name: Feature request
+description: Suggest a new rule or capability for the plugin
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem you are trying to solve
+      description: What eco-design issue or workflow gap motivates this request?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should the plugin do? If you are proposing a new rule, include the proposed key, the detection pattern and an example of compliant vs. non-compliant code.
+    validations:
+      required: true
+  - type: input
+    id: upstream
+    attributes:
+      label: Upstream specification (if any)
+      description: Link to the matching Creedengo / Green Code Initiative rule, or to the relevant CNUMR best practice.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

@@ -1,0 +1,66 @@
+name: Bug report
+description: Report a problem with the Creedengo Flutter plugin
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report. The more detail you
+        provide, the easier it is for us to act on it.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One-sentence description of the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Steps to reproduce the bug. A minimal Dart snippet that triggers it is ideal.
+      placeholder: |
+        1. Save the following file as `lib/foo.dart` ...
+        2. Run `sonar-scanner ...`
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      placeholder: e.g. 1.0.0
+    validations:
+      required: true
+  - type: input
+    id: sonarqube-version
+    attributes:
+      label: SonarQube version
+      placeholder: e.g. 10.3 Community Edition
+    validations:
+      required: true
+  - type: input
+    id: java-version
+    attributes:
+      label: Java version
+      placeholder: e.g. Temurin 17.0.10
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Paste the relevant excerpt from `sonar.log` or the scanner output, redacted of any secret.
+      render: text

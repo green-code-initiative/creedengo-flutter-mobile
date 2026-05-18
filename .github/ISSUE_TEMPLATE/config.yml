@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: https://github.com/creedengo/creedengo-flutter/security/policy
+    about: Please report security vulnerabilities privately as described in SECURITY.md.
+  - name: Question or discussion
+    url: https://github.com/creedengo/creedengo-flutter/discussions
+    about: Open a GitHub Discussion for usage questions or design ideas.
