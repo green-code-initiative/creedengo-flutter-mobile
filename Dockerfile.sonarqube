@@ -1,0 +1,22 @@
+# Custom SonarQube image bundling the Creedengo Flutter plugin.
+# Build with:
+#   mvn -DskipTests clean package
+#   docker build -f Dockerfile.sonarqube -t creedengo/sonarqube:1.0.0 .
+FROM sonarqube:10.3-community
+
+LABEL org.opencontainers.image.title="SonarQube + Creedengo Flutter" \
+      org.opencontainers.image.description="SonarQube Community with the Creedengo Flutter plugin pre-installed" \
+      org.opencontainers.image.source="https://github.com/creedengo/creedengo-flutter" \
+      org.opencontainers.image.licenses="GPL-3.0-only"
+
+USER root
+COPY --chown=sonarqube:sonarqube target/creedengo-flutter-1.0.0-SNAPSHOT.jar \
+     /opt/sonarqube/extensions/plugins/creedengo-flutter-1.0.0-SNAPSHOT.jar
+RUN chmod 0644 /opt/sonarqube/extensions/plugins/creedengo-flutter-1.0.0-SNAPSHOT.jar
+USER sonarqube
+
+ENV SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true \
+    SONAR_WEB_JAVAADDITIONALOPTS="-Xmx512m -Xms128m" \
+    SONAR_CE_JAVAADDITIONALOPTS="-Xmx512m -Xms128m"
+
+EXPOSE 9000
