@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
-  
+
 permissions:
   contents: read
 
@@ -62,5 +62,5 @@ jobs:
           if [ -z "$SONAR_TOKEN" ]; then
             echo "⚠️ SONAR_TOKEN is not set (Dependabot PR or external fork). Skipping SonarQube scan."
           else
-            ./mvnw -e -B sonar:sonar -Dsonar.projectKey=green-code-initiative_creedengo-flutter-mobile -Dsonar.organization=green-code-initiative
+            mvn -e -B sonar:sonar -Dsonar.projectKey=green-code-initiative_creedengo-flutter-mobile -Dsonar.organization=green-code-initiative
           fi
