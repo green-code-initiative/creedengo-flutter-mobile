@@ -34,6 +34,20 @@ jobs:
           java-version: ${{ matrix.java }}
           cache: maven
 
+      - name: Configure Maven for Sonar
+        if: matrix.java == '17'
+        run: |
+          mkdir -p ~/.m2
+          echo "<settings><pluginGroups><pluginGroup>org.sonarsource.scanner.maven</pluginGroup></pluginGroups></settings>" > ~/.m2/settings.xml
+
+      - name: Cache SonarQube packages
+        if: matrix.java == '17'
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
       - name: Build and test
         run: mvn -B -ntp verify
 
